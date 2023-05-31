@@ -1,5 +1,3 @@
-import logo from './assets/logo.svg';
-import './assets/App.css';
 // route the homepage
 // react-router components
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
