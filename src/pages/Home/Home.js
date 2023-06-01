@@ -17,7 +17,8 @@ function Home() {
         <div >
             {/* navbar */}
             <Navbar />
-            <Box sx={{ width: '100%' }}>
+            <Box sx={{ width: '100%', position: "relative", marginTop: "100px" }}>
+                
                 <Grid container spacing={3} columns={16} >
                     {/* left column: Quickmatch & Suggested */}
                     <Grid item={true} xs={4}>
