@@ -1,6 +1,8 @@
 import React from 'react'
 import { AppBar, Button, Container, Stack } from '@mui/material'
 import Searchbar from './Searchbar'
+import OutlinedButton from '../Buttons/OutlinedButton'
+import FocusedButton from '../Buttons/FocusedButton'
 
 const Navbar = () => {
     return (
@@ -15,7 +17,7 @@ const Navbar = () => {
                 <Stack 
                     direction="row"
                     alignItems="center"
-                    justifyContent="space-evenly"
+                    justifycontent="space-evenly"
                     flexWrap="wrap"
                     spacing={3}
                 >
@@ -24,7 +26,7 @@ const Navbar = () => {
                     <Stack
                         direction="row"
                         alignItems="center"
-                        jusityContent="center"
+                        jusitycontent="center"
                         spacing={3}
                         
                     >
@@ -45,13 +47,14 @@ const Navbar = () => {
                     <Stack 
                         direction="row"
                         alignItems="center"
-                        jusityContent="center"
+                        jusitycontent="center"
                         spacing={3}
                     >
                         {/* Sign up */}
-                        <p>Sign Up</p>
+                        <FocusedButton variant="contained">SignUp</FocusedButton>
                         {/* Log in */}
-                        <p>Log in</p>
+                        <OutlinedButton variant="contained">Log In</OutlinedButton>
+                
                     </Stack>
                     
 
