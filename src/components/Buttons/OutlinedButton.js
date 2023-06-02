@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import React from "react";
 
 
-const OutlinedButton = ({ sx = {}, arrow, children, fit, ...props }) => {
+const OutlinedButton = ({ sx = {}, children, fit, ...props }) => {
     return (
         <Button
             variant="outlined"

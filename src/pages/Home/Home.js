@@ -6,10 +6,13 @@ import Box from '@mui/material/Box'; // Box version 1
 import Navbar from '../../components/ui/Navbar';
 import Quickmatch from '../../containers/Home/Quickmatch';
 import Suggested from '../../containers/Home/Suggested';
-import Carousel from '../../containers/Home/Carousel';
+import Slideshow from '../../containers/Home/Slideshow';
 import Favorites from '../../containers/Home/Favorites';
 import Rooms from '../../containers/Home/Rooms';
 import History from '../../containers/Home/History';
+
+// test component for slideshow
+// import Slideshow from '../../components/__tests__/Slideshow';
 
 
 function Home() {
@@ -37,7 +40,10 @@ function Home() {
                     {/* middle: Carousel & Favorites */}
                     <Grid item={true} xs={8}>
                         <Box bgcolor="primary.light" p={2}>
-                            <Carousel />
+                            <Slideshow />
+
+                            {/* test component for slideshow */}
+                            {/* <Slideshow />  */}
                         </Box>
                         <Box 
                             bgcolor="primary.light" 
