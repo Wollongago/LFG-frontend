@@ -10,10 +10,13 @@ import Slideshow from '../../containers/Home/Slideshow';
 import Favorites from '../../containers/Home/Favorites';
 import Rooms from '../../containers/Home/Rooms';
 import History from '../../containers/Home/History';
+import CardComponent from '../../components/CardComponent';
 
 // test component for slideshow
 // import Slideshow from '../../components/__tests__/Slideshow';
 
+// data for card component
+import dataArray from '../../data/dataArray';
 
 function Home() {
     return (
@@ -47,9 +50,12 @@ function Home() {
                         </Box>
                         <Box 
                             bgcolor="primary.light" 
-                            p={2} 
+                            p={5} 
+                            alignItems="center"
                             marginTop={ '2%'}
+                            
                         >
+                            <CardComponent dataArray={dataArray} />
                             <Favorites />
                         </Box>
                     </Grid>
