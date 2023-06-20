@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardContent, CardMedia, Typography, Button, Box } from "@mui/material";
-
+import FocusedButton from "./Buttons/FocusedButton";
 const CardComponent = ({ dataArray }) => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
@@ -15,13 +15,22 @@ const CardComponent = ({ dataArray }) => {
   const displayedCards = dataArray.slice(currentIndex, currentIndex + 5);
 
   return (
-    <Box sx={{ width: 1 }} >
+    <Box sx={{ width: 1,backgroundColor: 'primary.dark',
+    border: 1,
+    borderColor: '#242424',
+    borderRadius: 5,
+    paddingTop: -2,
+    paddingLeft: 1.5,
+    paddingBottom: 1.5,
+    
+      }} >
+      <h1>Game Lobbies</h1>
       <Box>
         {currentIndex > 0 && (
-          <Button onClick={handlePrevious}>Previous</Button>
+          <Button variant="contained" color="primary" onClick={handlePrevious}>Previous</Button>
         )}
         {currentIndex + 5 < dataArray.length && (
-          <Button onClick={handleNext}>Next</Button>
+          <Button variant="contained" color="primary" onClick={handleNext}>Next</Button>
         )}
       </Box>
       <Box display="flex" >
@@ -31,7 +40,7 @@ const CardComponent = ({ dataArray }) => {
             <CardContent>
               <Typography variant="h6">{cardData.title}</Typography>
               <Typography variant="body2">Players: {cardData.playerCount}</Typography>
-              <Button variant="contained" color="primary">Button</Button>
+              <FocusedButton onClick="">View </FocusedButton>
             </CardContent>
           </Card>
         ))}

@@ -1,0 +1,96 @@
+
+.signup-container {
+    /* position: relative; */
+    overflow: hidden;
+    height: 100%;
+  }
+  
+  .signup-container::before {
+    content: '';
+    position: absolute;
+    /* top: -50%;
+    left: -50%; */
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #2e0a34, #340a314a, #5d197f);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+  }
+  
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .content-container {
+    position: relative;
+    z-index: 1;
+    margin-top: 200px;
+    height: 100%;
+  }
+
+.rect1 {
+    position: fixed;
+    z-index: 10;
+    bottom: 10px;
+    animation: moveAnimation 50s ease infinite;
+}
+
+@keyframes moveAnimation {
+    0% {
+        right: 0% ;
+    }
+    100% {
+        transform: translateX(-3500px);
+    }
+  }
+
+  .rect2 {
+    position: fixed;
+    z-index: 10;
+    left: 20px;
+    width: 50px;
+    animation: moveAnimation2 50s ease infinite;
+}
+
+@keyframes moveAnimation2 {
+    0% {
+        top: 300px;
+        
+        
+    }
+    100% {
+        
+        transform: translateY(-3500px);
+    }
+  }
+
+  .rect3 {
+    position: fixed;
+    z-index: 10;
+    bottom: 120px;
+    animation: moveAnimation3 50s ease infinite;
+}
+
+@keyframes moveAnimation3 {
+    0% {
+        
+        left: 200px ;
+        
+    }
+    100% {
+        
+        transform: translateX(3000px);
+    }
+}
+
+#controller-image {
+    
+}

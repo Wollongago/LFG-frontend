@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import React from 'react'
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
@@ -14,15 +15,18 @@ const images = [
 
 const Slideshow = () => {
     return (
+        
         <Carousel 
             showThumbs={false} 
             autoPlay={true} 
             infiniteLoop={true} 
             showStatus={false}
+            dynamicHeight={true}
+
         >
             {images.map((image, index) => (
                 <div key={index}>
-                <img src={image.src} alt={image.alt} />
+                <img src={image.src} alt={image.alt} height={430} style={{ borderRadius: '10px' }}/>
             </div>
             ))}
         </Carousel>

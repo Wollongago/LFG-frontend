@@ -1,101 +1,121 @@
 import { useState } from 'react';
 import { TextField, Button, Box, Grid, Typography } from '@mui/material';
-import Navbar from '../../components/ui/Navbar';
+// import Navbar from '../../components/ui/Navbar';
 import { useNavigate } from 'react-router-dom';
+import './Signup.css'; // Import CSS file for custom styles
+import { signUpContent } from '../../utils/content';
+
+const {
+    ControllerImage,
+    MainBG,
+    steamImage,
+    Rect1,
+    Rect2,
+    Rect3,
+    Rect4,
+    title
+} = signUpContent;
 
 const Signup = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const [signupData, setSignupData] = useState({
-        username: '',
-        password: '',
+  const [signupData, setSignupData] = useState({
+    username: '',
+    password: '',
+  });
+
+  const handleSignupChange = (e) => {
+    setSignupData({
+      ...signupData,
+      [e.target.name]: e.target.value,
     });
+  };
 
-    const handleSignupChange = (e) => {
-        setSignupData({
-        ...signupData,
-        [e.target.name]: e.target.value,
-        });
-    };
+  const handleSignupSubmit = (e) => {
+    e.preventDefault();
+    // Make API request to the sign-up endpoint
+    // ***ENDPOINT NOT UPDATED YET***
+    fetch('/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(signupData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data); // Handle success scenario
 
-    const handleSignupSubmit = (e) => {
-        e.preventDefault();
-        // Make API request to the sign-up endpoint
-        // be sure to change the endpoint
-        fetch('/signup' , {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(signupData),
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data); // Handle success scenario
-            // Redirect to the login page
-            navigate('/login');
-        })
-        .catch((error) => {
-            console.error(error); // Handle error scenario
-        });
-    };
+        const { token } = data;
+        // Store the JWT token securely (e.g., in local storage)
+        // should store:
+        localStorage.setItem('jwtToken', token);
 
-    const handleSteamLogin = () => {
-        // Perform Steam login logic
-        // Redirect the user to the Steam login page or show a pop-up window
-        // Once the user logs in with Steam, handle the response and sign them up
-    };
+        // Redirect to the login page
+        navigate('/');
+      })
+      .catch((error) => {
+        console.error(error); // Handle error scenario
+      });
+  };
 
-    return (
-        <Box>
-            <Box>   
-                <Navbar />
+  const handleSteamLogin = () => {
+    // Perform Steam login logic
+    // Redirect the user to the Steam login page or show a pop-up window
+    // Once the user logs in with Steam, handle the response and sign them up
+  };
+
+  return (
+    <Box className="signup-container">
+      
+      {/* Main Background */}
+      <Box sx={{ position: "fixed", zIndex: -10, top: 0, left: 0, right: 0 }}>
+        <img src={MainBG} style={{ width: "100%"}} />
+      </Box>
+
+      <Box className="content-container">
+        <Grid container spacing={-10}>
+          <Grid item xs={12} sm={6}>
+            <Box display="flex" justifyContent="center" >
+              <img id="controller-image"
+                src={ControllerImage}
+                alt="Signup"
+                width="400px"
+                
+              
+              />
             </Box>
-            
-            <Box marginTop="250px" marginLeft="20%" marginRight="20%">
-                <Grid container spacing={1}>
-                    <Grid item xs={12} sm={6}>
-                    <img
-                        src="https://purepng.com/public/uploads/large/purepng.com-gamepadgamepadgame-controlhandheld-controllervideo-games-controller-1701528353490feyrv.png"
-                        alt="Signup"
-                        width="400px"
-                    />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                    <Typography variant="h5">Sign Up</Typography>
-                    <Box mt={2}>
-                        <form onSubmit={handleSignupSubmit}>
-                        <TextField
-                            name="username"
-                            label="Username"
-                            value={signupData.username}
-                            onChange={handleSignupChange}
-                            fullWidth
-                            margin="normal"
-                        />
-                        <TextField
-                            name="password"
-                            label="Password"
-                            type="password"
-                            value={signupData.password}
-                            onChange={handleSignupChange}
-                            fullWidth
-                            margin="normal"
-                        />
-                        <Button type="submit" variant="contained" fullWidth>
-                            Sign Up
-                        </Button>
-                        <Button variant="contained" fullWidth onClick={handleSteamLogin}>
-                            Sign Up with Steam
-                        </Button>
-                        </form>
-                    </Box>
-                    </Grid>
-                </Grid>
+          </Grid>
+          <Grid item xs={12} sm={6} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+            <Typography variant="h5">Sign Up</Typography>
+            <Box mt={2}>
+              <form onSubmit={handleSignupSubmit}>
+               
+                <Box mt={2} display="flex" justifyContent="center">
+                  <img
+                    src={steamImage}
+                    alt="Sign Up with Steam"
+                    onClick={handleSteamLogin}
+                    style={{ cursor: 'pointer', width: '180px', height: 'auto' }}
+                  />
+                </Box>
+              </form>
             </Box>
-            
-        </Box>
-    );
+          </Grid>
+        </Grid>
+      </Box>
+
+      <Box className="rect1">
+        <img src={Rect1} />
+      </Box>
+      <Box className="rect2">
+        <img src={Rect2} style={{ width: "50px"}}  />
+      </Box>
+      <Box className="rect3">
+        <img src={Rect3} />
+      </Box>
+    </Box>
+  );
 };
 
-export default Signup
+export default Signup;

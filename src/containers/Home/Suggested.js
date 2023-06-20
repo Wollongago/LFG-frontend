@@ -5,14 +5,14 @@ import { Stack } from '@mui/material'
 const Suggested = () => {
   return (
     <Box  sx={{
-        borderBox: 'box-sizing',
-        padding: '30px',
-        width: 1,
-        height: "100%",
-        backgroundColor: 'primary.dark',
-        borderColor: 'white',
-        border: 1,
-        borderRadius: 5
+      borderBox: 'box-sizing',
+      padding: '30px',
+      width: 1,
+      height: 1,
+      backgroundColor: 'primary.dark',
+      border: 1,
+      borderColor: '#242424',
+      borderRadius: 5
     }}> 
 
       <Stack>

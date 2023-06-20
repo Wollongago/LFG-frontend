@@ -10,8 +10,8 @@ const Quickmatch = () => {
             width: 1,
             height: 1,
             backgroundColor: 'primary.dark',
-            borderColor: 'white',
             border: 1,
+            borderColor: '#242424',
             borderRadius: 5
         }}>
             <Stack >
