@@ -1,7 +1,7 @@
 // setup the home page
 import React from 'react';
-import Grid from '@mui/material/Grid'; // Grid version 1
-import Box from '@mui/material/Box'; // Box version 1
+import { Skeleton, Box, Grid, Stack } from '@mui/material';
+import { useState, useEffect } from 'react';
 
 import Navbar from '../../components/ui/Navbar';
 import Quickmatch from '../../containers/Home/Quickmatch';
@@ -20,63 +20,49 @@ import RoomCardComponent from '../../components/RoomCardComponent';
 import dataArray from '../../data/dataArray';
 // data for rooms component
 import roomsDataArray from '../../data/roomsDataArray';
+import SkeletonQuickmatch from '../../components/SkeletonLoading/Home/SkeletonQuickmatch';
 
 function Home() {
-    return (
-        <div >
-            {/* navbar */}
-            <Navbar />
-            <Box sx={{ width: '100%', position: "relative", marginTop: "100px" }}>
-                
-                <Grid container spacing={1} columns={16} >
-                    {/* left column: Quickmatch & Suggested */}
-                    <Grid item={true} xs={4}>
-                        <Box boxShadow={5}  p={2}>
-                            <Quickmatch />
-                        </Box>
-                        <Box 
-                            
-                            p={2} 
-                            marginTop={ '2%'}
-                        >
-                            <Suggested />
-                        </Box>
-                        
-                    </Grid>
-                    {/* middle: Carousel & Favorites */}
-                    <Grid item={true} xs={8}>
-                        <Box p={2}>
-                            <Slideshow />
+    const [loading, setLoading] = useState(true);
 
-                            {/* test component for slideshow */}
-                            {/* <Slideshow />  */}
-                        </Box>
-                        <Box 
-                        
-                            p={2} 
-                            alignItems="center"
-                            marginTop={ '2px'}
-                            
-                        >
-                            
-                            <CardComponent dataArray={dataArray} />
-                        </Box>
-                    </Grid>
-                    {/* right column: Rooms & History */}
-                    <Grid item={true} xs={4}>
-                        <Box p={2}>
-                            {/* <Rooms /> */}
-                            <RoomCardComponent roomsDataArray={roomsDataArray} />
-                            
-                             {/* {console.log(roomsDataArray.slice(0, 4))} */}
-                        </Box>
-                        
-                    
-                    </Grid>
-                </Grid>
-            </Box>
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+    }, []);
+        
+    return (
+        <div>
+        <Navbar />
+        <Box sx={{ width: '100%', position: 'relative', marginTop: '100px' }}>
+            <Grid container spacing={1} columns={16}>
+            <Grid item xs={4}>
+                <Box boxShadow={5} p={2}>
+                {  
+                    loading ? ( <SkeletonQuickmatch />) : (<Quickmatch />)
+                }      
+                </Box>
+                <Box p={2} marginTop={'2%'}>
+                <Suggested />
+                </Box>
+            </Grid>
+            <Grid item xs={8}>
+                <Box p={2}>
+                <Slideshow />
+                </Box>
+                <Box p={2} marginTop={'2px'}>
+                <CardComponent dataArray={dataArray} />
+                </Box>
+            </Grid>
+            <Grid item xs={4}>
+                <Box p={2}>
+                <RoomCardComponent roomsDataArray={roomsDataArray} />
+                </Box>
+            </Grid>
+            </Grid>
+        </Box>
         </div>
     );
-}
+    }
 
 export default Home;
