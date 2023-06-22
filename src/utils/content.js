@@ -6,6 +6,18 @@ import Rect2 from "../assets/signup/rect2.png"
 import Rect3 from "../assets/signup/rect3.png"
 import Rect4 from "../assets/signup/rect4.png"
 
+// Lobby Page
+import ApexLegends from "../assets/lobby/lobbybanner.png"
+
+//Logo
+import Logo from "../assets/logo.png"
+
+
+
+export const logoContent = {
+    Logo,
+}
+
 export const signUpContent = {
     ControllerImage,
     MainBG,
@@ -17,3 +29,10 @@ export const signUpContent = {
     title: "Sign Up",
     
     };
+
+
+
+export const lobbyContent = {
+    ApexLegends,
+    title: "Apex Legends",
+}

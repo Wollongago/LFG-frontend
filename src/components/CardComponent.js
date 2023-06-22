@@ -1,9 +1,10 @@
 import React from "react";
 import { Card, CardContent, CardMedia, Typography, Button, Box } from "@mui/material";
 import FocusedButton from "./Buttons/FocusedButton";
+import { useNavigate } from "react-router-dom";
 const CardComponent = ({ dataArray }) => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
-
+  const navigate = useNavigate();
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) => Math.max(prevIndex - 5, 0));
   };
@@ -24,7 +25,6 @@ const CardComponent = ({ dataArray }) => {
     paddingBottom: 1.5,
     
       }} >
-      <h1>Game Lobbies</h1>
       <Box>
         {currentIndex > 0 && (
           <Button variant="contained" color="primary" onClick={handlePrevious}>Previous</Button>
@@ -35,12 +35,12 @@ const CardComponent = ({ dataArray }) => {
       </Box>
       <Box display="flex" >
         {displayedCards.map((cardData, index) => (
-          <Card key={index} style={{ margin: '0 10px'}}>
+          <Card key={index} style={{ margin: '0 10px'}} sx={{ maxWidth: 140 }}>
             <CardMedia height="200" component="img" src={cardData.picture} alt="Card image" />
-            <CardContent>
+            <CardContent sx={{ height:'160px'}}>
               <Typography variant="h6">{cardData.title}</Typography>
               <Typography variant="body2">Players: {cardData.playerCount}</Typography>
-              <FocusedButton onClick="">View </FocusedButton>
+              <FocusedButton  onClick={() => navigate(`/lobby/${cardData.lobby}`)}>View </FocusedButton>
             </CardContent>
           </Card>
         ))}

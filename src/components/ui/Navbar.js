@@ -9,13 +9,19 @@ import {
   Toolbar,
   Tooltip,
   Typography,
-  Stack
+  Stack,
+  Avatar
 } from '@mui/material';
 import Searchbar from './Searchbar';
 import OutlinedButton from '../Buttons/OutlinedButton';
 import FocusedButton from '../Buttons/FocusedButton';
 import { AccountCircle, Menu as MenuIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { logoContent } from '../../utils/content'; 
+
+const {
+    Logo
+} = logoContent;
 
 const Navbar = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -34,15 +40,25 @@ const Navbar = () => {
     const handleLogout = () => {
         localStorage.removeItem('jwtToken');
         navigate('/signup'); // Redirect to the login page or any other desired page
-      };
+    };
 
     return (
         <AppBar elevation={0} sx={{ py: 2, height: '100px' }}>
         <Container>
             <Toolbar disableGutters>
-            <Typography variant="h6" noWrap component="a" href="/" sx={{ mr: 2 }}>
-                Logo
-            </Typography>
+            <Box
+                    component="img"
+                    sx={{
+                    height: 30,
+                    width: 25,
+                    marginRight:'20px',
+                    ":hover": {
+                        cursor: "pointer",
+                        }
+                    }}
+                    src={Logo}
+                    onClick={() => navigate('/')}
+                />
 
             <Box sx={{ flexGrow: 1 }}>
                 {/* Rest of the code from your existing Navbar component */}
@@ -85,9 +101,7 @@ const Navbar = () => {
                     // Render icon button when JWT token is present
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <AccountCircle />
-                            </IconButton>
+                            <Avatar alt="Remy Sharp" onClick={handleOpenUserMenu} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThoGwpFpn3fXE2WH0sku2Q184Nxhlr3N5A1J6BdMPud1gUUDYt5e46hCRFMtA9myDdG3U&usqp=CAU" />
                         </Tooltip>
                         <Menu
                             id="menu-appbar"
@@ -105,7 +119,7 @@ const Navbar = () => {
                             onClose={handleCloseUserMenu}
                         >
                             {/* Menu items */}
-                            <MenuItem onClick={handleCloseUserMenu}>Profile</MenuItem>
+                            <MenuItem onClick={() => {navigate('/profile')}}>Profile</MenuItem>
                             <MenuItem onClick={handleCloseUserMenu}>Account</MenuItem>
                             <MenuItem onClick={handleCloseUserMenu}>Dashboard</MenuItem>
                             <MenuItem onClick={handleLogout}>Logout</MenuItem>

@@ -4,6 +4,7 @@ import { TextField, Button, Box, Grid, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import './Signup.css'; // Import CSS file for custom styles
 import { signUpContent } from '../../utils/content';
+import { Margin } from '@mui/icons-material';
 
 const {
     ControllerImage,
@@ -60,9 +61,12 @@ const Signup = () => {
   };
 
   const handleSteamLogin = () => {
+    
     // Perform Steam login logic
     // Redirect the user to the Steam login page or show a pop-up window
     // Once the user logs in with Steam, handle the response and sign them up
+    localStorage.setItem('jwtToken', '1'); // Temporary solution
+    navigate('/');
   };
 
   return (
@@ -74,23 +78,21 @@ const Signup = () => {
       </Box>
 
       <Box className="content-container">
-        <Grid container spacing={-10}>
-          <Grid item xs={12} sm={6}>
+        <Grid container columns={2} spacing={10}>
+          <Grid item xs={1} p={0} >
             <Box display="flex" justifyContent="center" >
               <img id="controller-image"
                 src={ControllerImage}
                 alt="Signup"
                 width="400px"
-                
-              
               />
             </Box>
           </Grid>
-          <Grid item xs={12} sm={6} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
-            <Typography variant="h5">Sign Up</Typography>
+          <Grid item xs={1} p={0} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', padding:'0'}}>
+            <Typography variant="h5">Sign In  </Typography>
             <Box mt={2}>
               <form onSubmit={handleSignupSubmit}>
-               
+              
                 <Box mt={2} display="flex" justifyContent="center">
                   <img
                     src={steamImage}
