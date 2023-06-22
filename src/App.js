@@ -7,6 +7,7 @@ import Signup from './pages/Signup/Signup';
 import './assets/app.css';
 import Lobbies from "./pages/Lobbies/Lobbies";
 import Profile from "./pages/Profile";
+import LobbyPage from "./pages/Lobbies/LobbyPage";
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
-        <Route path="/lobby/:id" element={<Lobbies />} />
+        <Route path="/lobby/:gamename" element={<Lobbies />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/lobby/:game/:roomId" element={<LobbyPage />} />
       </Routes>
     </div>
   );
