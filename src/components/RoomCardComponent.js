@@ -8,13 +8,16 @@ const RoomCardComponent = ( { roomsDataArray }) => {
     const displayedCards = roomsDataArray.slice(0, 4);
 
   return (
-    <Box sx={{ width: 1,backgroundColor: 'primary.dark',
-    border: 1,
-    borderColor: '#242424',
-    borderRadius: 5,
-    paddingTop: -2,
-    paddingLeft: 1.5,
-    paddingBottom: 1.5  }}>
+    <Box 
+    sx={{ 
+      width: '100%',
+      backgroundColor: 'primary.dark',
+      border: 1,
+      borderColor: '#242424',
+      borderRadius: 5,
+      paddingTop: -2,
+      paddingLeft: 5,
+      paddingBottom: 1.5  }}>
         <Box sx={{
             display: 'flex',
             justifyContent: 'center',
@@ -27,7 +30,7 @@ const RoomCardComponent = ( { roomsDataArray }) => {
             <h1>Rooms</h1>
         </Box>
          {displayedCards.map((cardData, index) => (
-          <Card key={index} style={{ margin: '15px 10px'}} sx={{ maxWidth: 345 }}>
+          <Card key={index} style={{ margin: '15px 10px'}} sx={{ maxWidth: 400 }}>
             <CardMedia height="90" component="img" src={cardData.picture} alt="Card image" />
             
             <CardContent sx={{ maxHeight: 80}}>

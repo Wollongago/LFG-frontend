@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Stack } from '@mui/material'
 
 const Players = () => {
+    
   return (
     <Box  sx={{
         borderBox: 'box-sizing',

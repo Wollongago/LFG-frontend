@@ -41,17 +41,16 @@ const Lobbies = () => {
                 <Box
                     component="img"
                     sx={{
-                    marginTop: '2%',
-                    marginRight: '2%',
-                    height: 250,
-                    width: 1,
+                    marginTop: '15px',
+                    marginLeft: '30px',
+                    height: 340,
+                    width: 1523,
                     borderRadius :2,
                     objectFit : 'cover'   
                     // maxHeight: { xs: 233, md: 167 },
-                    // maxWidth: { xs: 350, md: 250 },
                     }}
                     alt="The house from the offer."
-                    src={ApexLegends}
+                    src="https://steamcdn-a.akamaihd.net/steam/apps/1172470/library_hero.jpg"
                 />
 
                     <Box 
