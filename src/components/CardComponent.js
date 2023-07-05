@@ -26,14 +26,14 @@ const CardComponent = ({ dataArray }) => {
     display: 'flex',
     alignItems: "center",
     justifyContent: "center",
-    // margin: 'auto',
-    // paddingTop: -2,
+    margin: 'auto',
+    padding: 2,
     // paddingLeft: 1.5,
     // paddingBottom: 1.5,
     
       }} >
         {currentIndex > 0 && (
-          <Button 
+          <Button sx={{ padding: 0}}
           variant="contained" color="primary" onClick={handlePrevious}>
             <ArrowBackIcon /> 
           </Button>
@@ -53,7 +53,7 @@ const CardComponent = ({ dataArray }) => {
         ))}
       </Box>
       {currentIndex + 5 < dataArray.length && (
-          <Button variant="contained" color="primary" onClick={handleNext}><ArrowForwardIcon /></Button>
+          <Button sx={{ padding: 0}} variant="contained" color="primary" onClick={handleNext}><ArrowForwardIcon /></Button>
         )}
     </Box>
   );
