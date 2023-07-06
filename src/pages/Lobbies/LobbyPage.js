@@ -28,26 +28,32 @@ const LobbyPage = () => {
   const [newsItems, setNewsItems] = useState([]);
 
   // Fetch Steam news from the API
-  useEffect(() => {
-    const fetchSteamNews = async () => {
-      try {
-        const response = await fetch(steamNewsUrl);
-        const data = await response.json();
+useEffect(() => {
+  const fetchSteamNews = async () => {
+    try {
+      const response = await fetch(steamNewsUrl, { mode: 'cors' });
+      const data = await response.json();
 
-        // Extract the news items from the API response
-        const newsItems = data.appnews.newsitems;
+      // Extract the news items from the API response
+      const newsItems = data.appnews.newsitems;
 
-        console.log(newsItems);
+      // Replace {STEAM_CLAN_IMAGE} tag with the actual image URL
+      const regex = /{STEAM_CLAN_IMAGE}(.*?)}/g;
+      const formattedNewsItems = newsItems.map((news) => {
+        const imageUrl = news.contents.match(regex)?.[1] || '';
+        const formattedNews = news.contents.replace(regex, `<img src="${imageUrl}" />`);
+        return { ...news, contents: formattedNews };
+      });
 
-        // Set the extracted news items in state
-        setNewsItems(newsItems);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+      // Set the extracted and formatted news items in state
+      setNewsItems(formattedNewsItems);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-    fetchSteamNews();
-  }, [steamAppId, steamNewsUrl]);
+  fetchSteamNews();
+}, [steamAppId, steamNewsUrl]);
 
   return (
     <Box>   
