@@ -20,54 +20,25 @@ const {
 const Signup = () => {
   const navigate = useNavigate();
 
-  const [signupData, setSignupData] = useState({
-    username: '',
-    password: '',
-  });
-
-  const handleSignupChange = (e) => {
-    setSignupData({
-      ...signupData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSignupSubmit = (e) => {
-    e.preventDefault();
-    // Make API request to the sign-up endpoint
-    // ***ENDPOINT NOT UPDATED YET***
-    fetch('/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(signupData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data); // Handle success scenario
-
-        const { token } = data;
-        // Store the JWT token securely (e.g., in local storage)
-        // should store:
-        localStorage.setItem('jwtToken', token);
-
-        // Redirect to the login page
-        navigate('/');
-      })
-      .catch((error) => {
-        console.error(error); // Handle error scenario
-      });
-  };
-
   const handleSteamLogin = () => {
     
     // Perform Steam login logic
     // Redirect the user to the Steam login page or show a pop-up window
     // Once the user logs in with Steam, handle the response and sign them up
-    localStorage.setItem('jwtToken', '1'); // Temporary solution
-    navigate('/');
+    window.location.href = 'http://localhost:8000/auth/steam';
   };
+
+    // Check if the user is already logged in
+  const userIdCookie = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*=\s*([^;]*).*$)|^.*$/, '$1');
+  if (userIdCookie) {
+    // User is logged in, perform the necessary actions
+    // For example, redirect to a specific page
+    navigate('/');
+  } else {
+    // User is not logged in, show the login options
+    // For example, show the Steam login button
+    // ...
+  }
 
   return (
     <Box className="signup-container">
@@ -91,7 +62,7 @@ const Signup = () => {
           <Grid item xs={1} p={0} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', padding:'0'}}>
             <Typography variant="h5">Sign In  </Typography>
             <Box mt={2}>
-              <form onSubmit={handleSignupSubmit}>
+             
               
                 <Box mt={2} display="flex" justifyContent="center">
                   <img
@@ -101,7 +72,6 @@ const Signup = () => {
                     style={{ cursor: 'pointer', width: '180px', height: 'auto' }}
                   />
                 </Box>
-              </form>
             </Box>
           </Grid>
         </Grid>
