@@ -29,6 +29,8 @@ const Navbar = () => {
     const navigate = useNavigate();
     const userIdCookie = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*=\s*([^;]*).*$)|^.*$/, '$1');
     const isAuthenticated = !!userIdCookie;
+    const steamAvatarCookie = document.cookie.replace(/(?:(?:^|.*;\s*)steam_avatar_url\s*=\s*([^;]*).*$)|^.*$/, '$1');
+    const avatarUrl = isAuthenticated ? steamAvatarCookie : '';
 
     const handleOpenUserMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -39,7 +41,11 @@ const Navbar = () => {
     };
 
     const handleLogout = () => {
-        document.cookie = 'user_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        const cookiesToDelete = ['user_id','steam_avatar_url', 'steam_profile_url', 'steam_username', 'steam_id'];
+    
+    cookiesToDelete.forEach(cookieName => {
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    });
         navigate('/signup'); // Redirect to the login page or any other desired page
     };
 
@@ -102,7 +108,7 @@ const Navbar = () => {
                     // Render icon button when user is authenticated
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
-                            <Avatar alt="Remy Sharp" onClick={handleOpenUserMenu} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThoGwpFpn3fXE2WH0sku2Q184Nxhlr3N5A1J6BdMPud1gUUDYt5e46hCRFMtA9myDdG3U&usqp=CAU" />
+                            <Avatar alt="Remy Sharp" onClick={handleOpenUserMenu} src={avatarUrl} />
                         </Tooltip>
                         <Menu
                             id="menu-appbar"
@@ -128,7 +134,7 @@ const Navbar = () => {
                     </Box>
                     ) : (
                         <>
-                        <FocusedButton variant="contained" >SignUp</FocusedButton>
+                        <FocusedButton variant="contained" onClick={() => {navigate('/signup')}}>SignUp</FocusedButton>
                         <OutlinedButton variant="contained">Log In</OutlinedButton>
                     </>
                     )}
