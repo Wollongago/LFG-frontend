@@ -5,9 +5,13 @@ import './Profile.css'
 
 const Profile = () => {
   // Simulated user data
+  const steam_name = document.cookie.replace(/(?:(?:^|.*;\s*)steam_username\s*=\s*([^;]*).*$)|^.*$/, '$1');
+  const steam_profile_url = document.cookie.replace(/(?:(?:^|.*;\s*)steam_profile_url\s*=\s*([^;]*).*$)|^.*$/, '$1');
+  const avatar_url = document.cookie.replace(/(?:(?:^|.*;\s*)steam_avatar_url\s*=\s*([^;]*).*$)|^.*$/, '$1');
   const userData = {
-    avatar: 'https://example.com/avatar.png',
-    username: 'Phil\'s Nuts',
+    avatar: avatar_url,
+    username: steam_name,
+    steam_profile_url: steam_profile_url,
     achievements: {
       "Counter-Strike: Global Offensive": 30,
       "Dota 2": 15,
@@ -39,7 +43,8 @@ const Profile = () => {
       <Navbar />
       <Box mt={15} className="profile">
         <img src={userData.avatar} alt="Avatar" />
-        <Typography variant="h4" className="username">Username: {userData.username}</Typography>
+        <Typography variant="h4" className="username">{userData.username}</Typography>
+        <a href={userData.steam_profile_url} target="_blank"> <img width={'60px'} src="https://static.vecteezy.com/system/resources/previews/020/975/558/original/steam-logo-steam-icon-transparent-free-png.png" alt="Steam" /> </a>
         <Typography variant="h5" className="achievements">Achievements:</Typography>
         <ul className="achievements-list">
           {Object.entries(userData.achievements).map(([game, count]) => (
