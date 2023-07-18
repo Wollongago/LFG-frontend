@@ -28,18 +28,6 @@ const Signup = () => {
     window.location.href = 'http://localhost:8000/auth/steam';
   };
 
-    // Check if the user is already logged in
-  const userIdCookie = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*=\s*([^;]*).*$)|^.*$/, '$1');
-  if (userIdCookie) {
-    // User is logged in, perform the necessary actions
-    // For example, redirect to a specific page
-    navigate('/');
-  } else {
-    // User is not logged in, show the login options
-    // For example, show the Steam login button
-    // ...
-  }
-
   return (
     <Box className="signup-container">
       
@@ -62,7 +50,7 @@ const Signup = () => {
           <Grid item xs={1} p={0} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', padding:'0'}}>
             <Typography variant="h5">Sign In  </Typography>
             <Box mt={2}>
-             
+            
               
                 <Box mt={2} display="flex" justifyContent="center">
                   <img

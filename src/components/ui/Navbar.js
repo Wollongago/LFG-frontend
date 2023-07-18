@@ -18,6 +18,7 @@ import FocusedButton from '../Buttons/FocusedButton';
 import { AccountCircle, Menu as MenuIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { logoContent } from '../../utils/content'; 
+import { deleteCookie, getCookieValue } from '../../utils/cookieUtils';
 
 const {
     Logo
@@ -27,9 +28,9 @@ const Navbar = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const navigate = useNavigate();
-    const userIdCookie = document.cookie.replace(/(?:(?:^|.*;\s*)user_id\s*=\s*([^;]*).*$)|^.*$/, '$1');
+    const userIdCookie = getCookieValue('user_id');
     const isAuthenticated = !!userIdCookie;
-    const steamAvatarCookie = document.cookie.replace(/(?:(?:^|.*;\s*)steam_avatar_url\s*=\s*([^;]*).*$)|^.*$/, '$1');
+    const steamAvatarCookie = getCookieValue('steam_avatar_url');
     const avatarUrl = isAuthenticated ? steamAvatarCookie : '';
 
     const handleOpenUserMenu = (event) => {
@@ -42,10 +43,11 @@ const Navbar = () => {
 
     const handleLogout = () => {
         const cookiesToDelete = ['user_id','steam_avatar_url', 'steam_profile_url', 'steam_username', 'steam_id'];
-    
-    cookiesToDelete.forEach(cookieName => {
-        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-    });
+
+        cookiesToDelete.forEach(cookieName => {
+            deleteCookie(cookieName);
+        });
+
         navigate('/signup'); // Redirect to the login page or any other desired page
     };
 
@@ -108,7 +110,7 @@ const Navbar = () => {
                     // Render icon button when user is authenticated
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
-                            <Avatar alt="Remy Sharp" onClick={handleOpenUserMenu} src={avatarUrl} />
+                            <Avatar alt="User Avatar" onClick={handleOpenUserMenu} src={avatarUrl} />
                         </Tooltip>
                         <Menu
                             id="menu-appbar"
@@ -127,8 +129,6 @@ const Navbar = () => {
                         >
                             {/* Menu items */}
                             <MenuItem onClick={() => {navigate('/profile')}}>Profile</MenuItem>
-                            <MenuItem onClick={handleCloseUserMenu}>Account</MenuItem>
-                            <MenuItem onClick={handleCloseUserMenu}>Dashboard</MenuItem>
                             <MenuItem onClick={handleLogout}>Logout</MenuItem>
                         </Menu>
                     </Box>

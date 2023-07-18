@@ -2,12 +2,13 @@ import React from 'react'
 import { Box, Typography } from '@mui/material'
 import Navbar from '../components/ui/Navbar'
 import './Profile.css'
+import { getCookieValue } from '../utils/cookieUtils'
 
 const Profile = () => {
   // Simulated user data
-  const steam_name = document.cookie.replace(/(?:(?:^|.*;\s*)steam_username\s*=\s*([^;]*).*$)|^.*$/, '$1');
-  const steam_profile_url = document.cookie.replace(/(?:(?:^|.*;\s*)steam_profile_url\s*=\s*([^;]*).*$)|^.*$/, '$1');
-  const avatar_url = document.cookie.replace(/(?:(?:^|.*;\s*)steam_avatar_url\s*=\s*([^;]*).*$)|^.*$/, '$1');
+  const steam_name = getCookieValue('steam_username');
+  const steam_profile_url = getCookieValue('steam_profile_url')
+  const avatar_url = getCookieValue('steam_avatar_url')
   const userData = {
     avatar: avatar_url,
     username: steam_name,
